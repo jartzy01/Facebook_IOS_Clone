@@ -9,7 +9,14 @@ import SwiftUI
 
 struct MarketplaceScreen: View {
     @State private var showSearchView = false
-
+    let items: [MarketData] = [
+        MarketData(imageName: "1", title: "Item 1", price: "$20"),
+        MarketData(imageName: "2", title: "Item 2", price: "$40"),
+        MarketData(imageName: "3", title: "Item 3", price: "$60"),
+        MarketData(imageName: "4", title: "Item 4", price: "$80"),
+        MarketData(imageName: "5", title: "Item 5", price: "$100"),
+        MarketData(imageName: "6", title: "Item 6", price: "$120")
+    ]
     var body: some View {
         NavigationStack {
             VStack {
@@ -96,8 +103,8 @@ struct MarketplaceScreen: View {
                     }
                     .padding(.horizontal)
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 15) {
-                        ForEach(1..<7) { index in
-                            MarketplaceItemView(imageName: "product\(index)", title: "Item \(index)", price: "$\(index * 20)")
+                        ForEach(items) { item in
+                            MarketplaceItemView(item: item)
                         }
                     }
                     .padding()
@@ -108,23 +115,22 @@ struct MarketplaceScreen: View {
 }
 
 struct MarketplaceItemView: View {
-    var imageName: String
-    var title: String
-    var price: String
-
+    let item: MarketData
     var body: some View {
         VStack(alignment: .leading) {
-            Image(imageName)
+            Image(item.imageName)
                 .resizable()
                 .scaledToFit()
-                .frame(height: 150)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .frame(width: 150, height: 150)
+                   .clipShape(RoundedRectangle(cornerRadius: 10))
+                   .overlay(RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.gray, lineWidth: 0))
 
-            Text(title)
+            Text(item.title)
                 .font(.headline)
                 .foregroundColor(.black)
 
-            Text(price)
+            Text(item.price)
                 .font(.subheadline)
                 .foregroundColor(.gray)
         }
