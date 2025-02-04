@@ -11,25 +11,32 @@ struct NotificationView: View {
     var notification: NotificationData
     var body: some View {
         HStack {
-            Image(notification.profileImage)
-                .resizable()
-                .clipShape(Circle())
-                .frame(width: 50, height: 50)
-
+            ZStack(alignment: .bottomTrailing) {
+                Image(notification.profileImage)
+                    .resizable()
+                    .clipShape(Circle())
+                    .frame(width: 50, height: 50)
+                
+                Image(systemName: notification.iconImage)
+                    .resizable()
+                    .frame(width: 25, height: 25)
+                    .clipShape(Circle())
+                    .shadow(radius: 2)
+                    .foregroundColor(.blue)
+                    .background(Circle().fill(Color.white))
+            }
+            
             VStack(alignment: .leading) {
                 HStack{
                     Text(notification.username)
                         .font(.system(size: 12, weight: .bold))
                     Text(notification.message)
-                        .font(.system(size: 12, weight: .bold))
+                        .font(.system(size: 11, weight: .bold))
+                        .foregroundColor(.gray)
                 }
                 HStack(spacing: 5) {
                     Text(notification.timestamp)
                         .font(.subheadline)
-                        .foregroundColor(.gray)
-                    Image(systemName: "globe")
-                        .resizable()
-                        .frame(width: 12, height: 12)
                         .foregroundColor(.gray)
                 }
             }
@@ -39,6 +46,8 @@ struct NotificationView: View {
         }
         .padding(.horizontal)
         .padding(.top, 8)
+        .padding(.bottom, 8)
+        .background((Color.blue.opacity(0.5)))
     }
 }
 

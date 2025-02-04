@@ -16,11 +16,12 @@ struct NotificationsScreen: View {
         NotificationData(id: 5, profileImage: "04", username: "Devon Jones", timestamp: "13d", message: "Likes a Post on your timeline", iconImage: "hand.thumbsup.circle.fill"),
         NotificationData(id: 6, profileImage: "05", username: "Baby Itsa", timestamp: "16d", message: "'s birthday was 16 days ago", iconImage: "birthday.cake.fill")
     ]
+    
     var body: some View {
-        NavigationStack{
-            ScrollView{
-                VStack{
-                    HStack{
+        NavigationStack {
+            ScrollView {
+                VStack(spacing: 0) {
+                    HStack {
                         Text("Notifications")
                             .font(.system(size: 30, weight: .bold))
                             .foregroundStyle(.black)
@@ -35,17 +36,32 @@ struct NotificationsScreen: View {
                             .frame(width: 20, height: 20)
                             .padding(.trailing)
                     }
-                    HStack{
+                    HStack {
                         Text("Earlier")
-                            .font(.system(size:15,weight: .semibold))
+                            .font(.system(size: 15, weight: .semibold))
                             .foregroundStyle(.black)
                             .padding(.leading)
                             .padding(.top)
                         Spacer()
-                            
                     }
-                    //ForEach(notifications, id: \.id) { notification in
-                 //       NotificationView(NotificationData: notification)
+                    Spacer()
+                    ForEach(notifications, id: \.id) { notification in
+                        NotificationView(notification: notification)
+                    }
+                    Spacer()
+                    RoundedRectangle(cornerRadius: 9)
+                        .foregroundStyle(.gray.opacity(0.4))
+                        .frame(height: 40)
+                        .overlay(
+                            HStack {
+                                Text("See previous notifications")
+                                    .foregroundColor(.black)
+                                    .padding(.leading, 80)
+                                Spacer()
+                            }
+                        )
+                        .padding(.horizontal)
+
                 }
             }
         }

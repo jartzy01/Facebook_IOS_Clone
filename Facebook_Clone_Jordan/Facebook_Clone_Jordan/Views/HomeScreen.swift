@@ -127,8 +127,8 @@ struct PostInputView: View {
                 .resizable()
                 .clipShape(Circle())
                 .frame(width: 50, height: 50)
-                .padding(10)
 
+                .padding(.leading)
             RoundedRectangle(cornerRadius: 50)
                 .stroke(Color.gray, lineWidth: 2)
                 .frame(height: 40)
@@ -144,9 +144,9 @@ struct PostInputView: View {
 
             Image(systemName: "photo")
                 .resizable()
-                .frame(width: 19, height: 30)
+                .frame(width: 20, height: 30)
                 .foregroundColor(.green)
-                .padding(10)
+                .padding(.trailing)
         }
     }
 }
