@@ -120,7 +120,7 @@ struct MarketplaceItemView: View {
         VStack(alignment: .leading) {
             Image(item.imageName)
                 .resizable()
-                .scaledToFit()
+                .scaledToFill()
                 .frame(width: 150, height: 150)
                    .clipShape(RoundedRectangle(cornerRadius: 10))
                    .overlay(RoundedRectangle(cornerRadius: 10)
