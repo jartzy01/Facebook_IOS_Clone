@@ -15,7 +15,13 @@ struct MarketplaceScreen: View {
         MarketData(imageName: "3", title: "Item 3", price: "$60"),
         MarketData(imageName: "4", title: "Item 4", price: "$80"),
         MarketData(imageName: "5", title: "Item 5", price: "$100"),
-        MarketData(imageName: "6", title: "Item 6", price: "$120")
+        MarketData(imageName: "6", title: "Item 6", price: "$122"),
+        MarketData(imageName: "7", title: "Item 7", price: "$190"),
+        MarketData(imageName: "8", title: "Item 8", price: "$200"),
+        MarketData(imageName: "9", title: "Item 9", price: "$100"),
+        MarketData(imageName: "10", title: "Item 10", price: "$100"),
+        MarketData(imageName: "11", title: "Item 11", price: "$100"),
+        MarketData(imageName: "12", title: "Item 12", price: "$120")
     ]
     var body: some View {
         NavigationStack {
@@ -47,7 +53,6 @@ struct MarketplaceScreen: View {
                             .padding(.trailing)
                     }
                     .navigationDestination(isPresented: $showSearchView) {
-                        SearchView()
                     }
                 }
                 
@@ -102,7 +107,7 @@ struct MarketplaceScreen: View {
                         Spacer()
                     }
                     .padding(.horizontal)
-                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 15) {
+                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                         ForEach(items) { item in
                             MarketplaceItemView(item: item)
                         }
@@ -121,20 +126,20 @@ struct MarketplaceItemView: View {
             Image(item.imageName)
                 .resizable()
                 .scaledToFill()
-                .frame(width: 150, height: 150)
+                .frame(width: 170, height: 170)
                    .clipShape(RoundedRectangle(cornerRadius: 10))
                    .overlay(RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.gray, lineWidth: 0))
-
-            Text(item.title)
-                .font(.headline)
-                .foregroundColor(.black)
-
-            Text(item.price)
-                .font(.subheadline)
-                .foregroundColor(.gray)
+            HStack{
+                Text(item.price)
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+                Text(item.title)
+                    .font(.headline)
+                    .foregroundColor(.black)
+            }
         }
-        .padding(10)
+        .padding(4)
         .background(Color.white)
         .clipShape(RoundedRectangle(cornerRadius: 10))
         .shadow(radius: 2)

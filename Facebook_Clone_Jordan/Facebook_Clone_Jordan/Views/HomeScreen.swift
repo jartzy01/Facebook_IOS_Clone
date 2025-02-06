@@ -32,7 +32,18 @@ struct HomeScreen: View {
             likes: 230,
             comments: 45,
             shares: 12
-        )
+        ),
+        PostData(
+            id: 3,
+            profileImage: "3",
+            username: "Jane Smith",
+            timestamp: "· 1d",
+            message: "Felt like posting this!",
+            postImage: "01",
+            likes: 1534,
+            comments: 120,
+            shares: 46
+        ),
     ]
 
     var body: some View {
@@ -45,16 +56,20 @@ struct HomeScreen: View {
                         .frame(height: 1)
                     
                     PostInputView()
-                    Divider()
+                    Rectangle()
+                        .frame(height: 6)
+                        .foregroundColor(.gray.opacity(0.5))
 
                     StoriesSection()
-                    Divider()
-                 
+                    Rectangle()
+                        .frame(height: 6)
+                        .foregroundColor(.gray.opacity(0.5))
                     ForEach(posts, id: \.id) { post in
                         PostView(data: post)
                     }
                 }
             }
+            
         }
     }
 }
@@ -101,10 +116,7 @@ struct TopNavBar: View {
                     .resizable()
                     .frame(width: 30, height: 30)
                     .foregroundColor(.black)
-                    .padding()
-            }
-            .navigationDestination(isPresented: $showSearchView) {
-                SearchView()
+                    .padding(.leading)
             }
 
             Button(action: {

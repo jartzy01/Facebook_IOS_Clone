@@ -16,7 +16,7 @@ struct PostView: View {
                     .resizable()
                     .clipShape(Circle())
                     .frame(width: 50, height: 50)
-
+                    .padding(.leading, 4)
                 VStack(alignment: .leading) {
                     Text(data.username)
                         .font(.headline)
@@ -32,18 +32,25 @@ struct PostView: View {
                             .foregroundColor(.gray)
                     }
                 }
+                
                 Spacer()
                 Image(systemName: "ellipsis")
                     .foregroundColor(.gray)
+                    .padding(.leading)
+                Image(systemName: "xmark")
+                    .foregroundColor(.gray)
+                    .padding(.leading)
             }
             .padding(.horizontal)
             .padding(.top, 8)
-
+            .padding(.bottom, 4)
             if !data.message.isEmpty {
                 Text(data.message)
                     .padding(.horizontal)
                     .padding(.top, 4)
                     .font(.body)
+                    .padding(.bottom, 4)
+                    .padding(.leading, 4)
             }
 
             if let imageName = data.postImage {
@@ -53,7 +60,7 @@ struct PostView: View {
                     .frame(maxWidth: .infinity)
                     .clipped()
             }
-
+                
             HStack {
                 HStack(spacing: 5) {
                     Image(systemName: "hand.thumbsup.fill")
@@ -88,8 +95,9 @@ struct PostView: View {
             .padding(.horizontal)
             .padding(.vertical, 6)
 
-            Divider()
-                
+            Rectangle()
+                .frame(height: 6)
+                .foregroundColor(.gray.opacity(0.5))
         }
     }
 }
