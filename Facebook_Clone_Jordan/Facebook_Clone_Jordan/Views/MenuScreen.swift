@@ -52,7 +52,7 @@ struct MenuScreen: View {
                             Text("Jordan Artzy-Mccendie")
                                 .font(.system(size: 18, weight: .medium))
                                 .foregroundStyle(.black)
-                            Spacer()
+                            Spacer().frame(width: 70)
                             Image(systemName: "chevron.down")
                                 .resizable()
                                 .foregroundStyle(.black)
@@ -62,15 +62,16 @@ struct MenuScreen: View {
                                         .fill(Color.gray.opacity(0.4))
                                         .frame(width: 40, height: 40)
                                 )
-                                .padding()
+                            Spacer().frame(width: 15)
                         }
-                        Divider()
+                        Divider().frame(width: 370)
                             .padding(7)
                         HStack{
                             Image(systemName: "plus.circle.fill")
                                 .resizable()
                                 .foregroundStyle(.black.opacity(0.6))
                                 .frame(width: 40, height: 40)
+                                .padding(.leading)
                             VStack{
                                 Text("Create new profile or Page")
                                     .foregroundStyle(.black.opacity(0.6))
@@ -84,31 +85,34 @@ struct MenuScreen: View {
                     }
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 15).fill(Color.white).frame(width: 380))
+                    .cornerRadius(15)
+                    .shadow(radius: 5)
                     
                     LazyVGrid(columns: columns, spacing: 10) {
-                         ForEach(items, id: \.label) { item in
-                             HStack{
-                                 VStack {
-                                     Image(systemName: item.image)
-                                         .resizable()
-                                         .scaledToFit()
-                                         .frame(width: 150, height: 20)
-                                         .foregroundColor(.blue)
-                                         .padding(.leading)
-                                         .padding(.trailing)
-                        
-                                     Text(item.label)
-                                         .font(.headline)
-                                         .foregroundColor(.black)
-                                 }
-                                 .frame(height: 80)  // Set the height for each item in the grid
-                                 .background(Color.gray.opacity(0.3))
-                                 .cornerRadius(15)
-                                 .shadow(radius: 5)
-                              
-                             }
-                         }
-                     }
+                        ForEach(items, id: \.label) { item in
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Image(systemName: item.image)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 20, height: 20)
+                                        .foregroundColor(.blue)
+                                        .padding(.leading)
+                                    Text(item.label)
+                                        .font(.headline)
+                                        .foregroundColor(.black)
+                                }
+                                .padding(.leading)
+                                Spacer()
+                            }
+                            .frame(width: 184,height: 80)
+                            .background(Color.white)
+                            .cornerRadius(15)
+                            .shadow(radius: 5)
+                        }
+                    }
+                    .padding(.leading)
+                    .padding(.trailing)
                 }
 
             }
